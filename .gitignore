@@ -1,0 +1,9 @@
+wp-admin/
+wp-includes/
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/plugins/
+wp-config.php
+
+# Ignore hidden files
+*.~*
