@@ -1,0 +1,38 @@
+{
+    "name": "99bitcoins-redesign",
+    "version": "1.0.0",
+    "description": "WordPress with Webpack",
+    "main": "index.js",
+    "scripts": {
+      "dev": "webpack --watch --mode development",
+      "build": "webpack --mode production"
+    },
+    "devDependencies": {
+      "@babel/cli": "^7.25.9",
+      "@babel/core": "^7.26.0",
+      "@babel/preset-env": "^7.26.0",
+      "@babel/preset-react": "^7.25.9",
+      "autoprefixer": "^10.4.20",
+      "babel-loader": "^9.2.1",
+      "css-loader": "^7.1.2",
+      "css-minimizer-webpack-plugin": "^7.0.0",
+      "file-loader": "^6.2.0",
+      "glob": "^11.0.0",
+      "mini-css-extract-plugin": "^2.9.2",
+      "postcss": "^8.4.47",
+      "postcss-loader": "^8.1.1",
+      "postcss-nested": "^7.0.2",
+      "postcss-preset-env": "^10.0.9",
+      "prettier": "^3.3.3",
+      "sass": "^1.80.6",
+      "sass-loader": "^16.0.3",
+      "url-loader": "^4.1.1",
+      "webpack": "^5.96.1",
+      "webpack-cli": "^5.1.4",
+      "webpack-node-externals": "^3.0.0"
+    },
+    "dependencies": {
+      "micromodal": "^0.4.10"
+    }
+  }
+  

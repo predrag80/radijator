@@ -1,0 +1,30 @@
+@use 'variables' as *;
+
+@mixin grid($rows: null, $columns: null, $gap: null, $row-gap: null, $column-gap: null) {
+    display: grid;
+    gap: $gap;
+    row-gap: $row-gap;
+    column-gap: $column-gap;
+    grid-template-rows: $rows;
+    grid-template-columns: $columns;
+  } 
+
+
+$breakpoints: (
+  small: 576px,
+  medium: 768px,
+  large: 992px,
+  xlarge: 1200px
+);
+
+// Mixin for container
+@mixin container {
+  max-width: 1280px;
+  margin: 0 auto;
+  
+  @each $size, $value in $breakpoints {
+    @media (max-width: $value) {
+      width: 100%;
+    }
+  }
+}

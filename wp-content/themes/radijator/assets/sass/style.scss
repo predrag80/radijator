@@ -1,0 +1,7 @@
+// CSS Reset
+@use "reset" as reset;
+
+// Main Styles
+@use "mixin"; 
+@use "main";  
+@use "components/header";  

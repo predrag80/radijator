@@ -1,0 +1,41 @@
+$container: 1280px;
+@media (max-width: 1200px) {
+    $container: 1140px;
+}
+@media (max-width: 992px) {
+    $container: 960px;
+}
+@media (max-width: 768px) {
+    $container: 720px;
+}
+
+@media (max-width: 576px) {
+    $container: 100%;
+}
+
+$gutter: 20px;
+$grid-block:grid;
+$flex-block:flex;
+
+$primary_color: #a76c6e;
+$secondary_color: #fff;
+$main_text: #4e4e4e;
+$main_heading: #1b1a1a;
+$nav_link: #3a3535;
+$nav_link_hover: #ec1f27;
+
+$font-weight-bold: 700;
+$font-weight-normal: 400;
+$font-weight-light: 300;
+
+$responsive-image: 100%;
+
+$text-center: center;
+$text-left: left;
+$text-right: right;  
+
+$openSans: 'Open Sans', sans-serif;
+$raleway: 'Raleway', sans-serif;
+$roboto: 'Roboto', sans-serif;
+$montserrat: 'Montserrat', sans-serif;
+$Ubuntu: 'Ubuntu', sans-serif;
