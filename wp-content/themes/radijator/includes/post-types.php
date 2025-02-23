@@ -10,6 +10,7 @@
 
                 ),
                 'show_in_nav_menus' => true,
+                'show_in_rest' => true,
                 'public' => true,
                 'has_archive' => true,
                 'rewrite' => array('slug' => 'products'),

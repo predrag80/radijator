@@ -13,7 +13,7 @@
 
 ?>
 <!-- wp:group {"align":"full","layout":{"type":"default"}} -->
-<div class="wp-block-group alignfull">scscscsc
+<div class="wp-block-group alignfull">
 	<!-- wp:group {"layout":{"type":"constrained"}} -->
 	<div class="wp-block-group">
 		<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->

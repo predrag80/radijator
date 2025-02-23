@@ -12,6 +12,7 @@ add_theme_support('editor-styles');
 add_editor_style( 'editor-style.css' );
 
 
+
 /**
  * Load Font Awesome css.
  */
@@ -54,6 +55,27 @@ add_action( 'after_setup_theme', 'radijator_setup' );
 
 
 
+function custom_breadcrumbs() {
+    $home = 'Home';
+    $blog = 'Products'; 
+
+    echo '<ul class="breadcrumb">';
+    echo '<li><a href="' . home_url() . '">' . $home . '</a></li>';
+
+    if (is_category() || is_single()) {
+        echo '<li><a href="' . get_permalink(get_option('page_for_posts')) . '">' . $blog . '</a></li>';
+        if (is_single()) {
+            echo '<li>'. get_the_title().'</li>';
+        }
+    }
+    echo '</ul>';
+}
+
+
+
+
+
+
 function r_register_acf_blocks() {
     /**
      * We register our block's with WordPress's handy
@@ -69,3 +91,7 @@ function r_register_acf_blocks() {
 }
 // Here we call our tt3child_register_acf_block() function on init.
 add_action( 'init', 'r_register_acf_blocks' );
+
+
+
+

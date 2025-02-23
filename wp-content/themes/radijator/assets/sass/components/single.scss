@@ -1,0 +1,14 @@
+@use '../variables' as *;
+@use '../mixin' as *;
+
+
+.single {
+    .product-content .grid-block {
+        align-items: flex-start;  
+    }
+
+    p {
+        margin: 16px 0;
+    }
+}
+
