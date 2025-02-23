@@ -48,39 +48,24 @@
                     <img src="<?php echo $dir_path;?>/assets/img/radijator.png" width="300" height="54" alt="Radijator logo">
                 </a>
                 <nav class="main-nav">
-                    <ul class="main-nav__list">
-                        <li class="main-nav__item">
-                            <a href="#" class="main-nav__link">
-                                <img src="<?php echo $dir_path;?>/assets/img/menu-icon-1.png" alt="" class="menu-icon">
-                                <img src="<?php echo $dir_path;?>/assets/img/menu-icon-1-hover.png" class="menu-icon-hover" alt="">
-                                Kotlovi na pelet
-                            </a>
-                        </li>
-                        <li class="main-nav__item">
-                            <a href="#" class="main-nav__link">
-                                <img src="<?php echo $dir_path;?>/assets/img/menu-icon-2.png" alt="" class="menu-icon">
-                                <img src="<?php echo $dir_path;?>/assets/img/menu-icon-2-hover.png" alt="" class="menu-icon-hover">
-                                Kotlovi na drva
-                            </a>
-                        </li>
-                        <li class="main-nav__item">
-                            <a href="#" class="main-nav__link">
-                                <img src="<?php echo $dir_path;?>/assets/img/menu-icon-3.png" alt=""  class="menu-icon">
-                                <img src="<?php echo $dir_path;?>/assets/img/menu-icon-3-hover.png" alt="" class="menu-icon-hover">
-                                Drvo/Pelet kotlovi
-                            </a>
-                        </li>
-                        <li class="main-nav__item">
-                            <a href="#" class="main-nav__link">
-                                <img src="<?php echo $dir_path;?>/assets/img/menu-icon-4.png" alt="" class="menu-icon">
-                                <img src="<?php echo $dir_path;?>/assets/img/menu-icon-4-hover.png" alt="" class="menu-icon-hover">
-                                Industrijski kotlovi
-                            </a>
-                        </li>
-                    </ul>
-                    <span class="search-item">
-                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-magnifying-glass" style="line-height: 1;"><path fill="#fff" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" class=""></path></svg>
-                    </span>
+
+                <?php
+                    if ( has_nav_menu( 'header_menu' ) ) {
+                        wp_nav_menu(
+                            array(
+                                'theme_location' => 'products_menu',
+                                'menu_class' => 'main-nav__list',
+                                'walker'   => new Custom_Walker_Nav_Menu(),
+                            )
+                        );
+                    } else {
+                        echo '<p>Go to <a href="' . esc_url( admin_url( 'nav-menus.php?action=locations' ) ) . '">Appearance > Menu</a> and set Header menu</p>';
+                    }
+                ?>      
+
+                <span class="search-item">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-magnifying-glass" style="line-height: 1;"><path fill="#fff" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" class=""></path></svg>
+                </span>
                 </nav>
                 <div class="toggle-menu">
                     <i class="fa-solid fa-bars"></i>
@@ -102,3 +87,26 @@
             </div>
         </div>
    </header>
+    <div class="r_slider">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <?php
+                $args = array(
+                    'post_type' => 'slider',
+                    'posts_per_page' => 3
+                );
+                $slider = new WP_Query( $args ); ?>
+                <?php if ( $slider->have_posts() ) : ?>
+                    <?php while ( $slider->have_posts() ) : $slider->the_post(); ?>
+                        <div class="swiper-slide">
+                            <img src="<?php the_post_thumbnail_url();?>" alt="">
+                        </div>
+                    <?php endwhile; ?>
+                    <?php wp_reset_postdata(); ?>
+                <?php endif; ?>        
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <main>

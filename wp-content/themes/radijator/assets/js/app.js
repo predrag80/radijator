@@ -29,66 +29,88 @@ const closeMenu = document.querySelector('.toggle-menu .fa-xmark');
 const secNav = document.querySelector('.secondary-nav');
 
 function openNav() {
-    openMenu.addEventListener('click', function(){
+    openMenu.addEventListener('click', function(e){
         this.parentNode.classList.toggle("hide-item");
         secNav.style.display = "block";
+        e.stopPropagation();
     });
 }
 
 function closeNav() {
-    closeMenu.addEventListener('click', function(){
+    closeMenu.addEventListener('click', function(e){
         this.parentNode.classList.remove("hide-item");
         secNav.style.display = "none";
+        e.stopPropagation();
     });
-}
+}  
 
 openNav();
-closeNav();
+closeNav(); 
 
-const swiper = new Swiper('.swiper', {
-    direction: 'horizontal',
-    loop: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    
-  
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    on: {
-        slideChangeTransitionStart: function () {
-            // Slide captions
-            var swiper = this;
-            var slideTitle = $(swiper.slides[swiper.activeIndex]).attr("data-title");
-            var slideSecTitle = $(swiper.slides[swiper.activeIndex]).attr("data-second-title");
-            var slideSubtitle = $(swiper.slides[swiper.activeIndex]).attr("data-subtitle");
-            $(".slide-captions").html(function() {
-                return "<h2 class='current-title'>" + slideTitle +   "<span>" + slideSecTitle +"</span>" + "</h2>" + "<h4 class='current-subtitle'>" + slideSubtitle + "</h4>";
-            });
-        }
-        }
-    });
+function mobileMenu() {
+    const secNavParentItem = document.querySelectorAll('.secondary-nav .menu .menu-item-has-children');
+    secNavParentItem.forEach(item => {
 
-    // Slide captions on load
-        var sizes1 = $(swiper.slides[swiper.activeIndex]).attr("data-title");
-        var sizes1_2 = $(swiper.slides[swiper.activeIndex]).attr("data-second-title");
-        var sizes2 = $(swiper.slides[swiper.activeIndex]).attr("data-subtitle");
-        $(".slide-captions").html(function() {
-        return "<h2 class='current-title'>" + sizes1 +  "<span>" + sizes1_2 +"</span>" + "</h2>" + "<h3 class='current-subtitle'>" + sizes2 + "</h3>";
-    });
+        let arrow = document.createElement("i");
+        arrow.classList.add("fa-solid", "fa-chevron-right", "arrow");
+        item.appendChild(arrow);
 
-    
-    jQuery(document).ready(function(){
-        $('.slider1').bxSlider({
-          slideWidth: 400,
-          minSlides: 1,
-          maxSlides: 3,
-          slideMargin: 35
+        item.addEventListener('click', function(e) {
+            
+            this.classList.toggle('active');
+
+            if (this.classList.contains("active")) {
+                arrow.classList.replace("fa-chevron-right", "fa-chevron-down");
+            } else {
+                arrow.classList.replace("fa-chevron-down", "fa-chevron-right");
+            }
+            e.preventDefault();
         });
-      });
-  
+    }
+    );
+}
 
-    
+mobileMenu(); 
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var swiper = new Swiper(".mySwiper", {
+        loop: true,  
+        effect: "fade",
+        autoplay: {
+        delay: 3000, 
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+
+    var swiperServices = new Swiper(".servicesSwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+      
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+            640: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            },
+            768: {
+            slidesPerView: 2,
+            spaceBetween: 40,
+            },
+            1024: {
+            slidesPerView: 3, 
+            spaceBetween: 50,
+        },
+      }
+    });
+}); 

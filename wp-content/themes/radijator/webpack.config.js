@@ -48,7 +48,7 @@ module.exports = {
             presets: [['@babel/preset-env', { targets: 'defaults' }]],
           },
         },
-      },
+      }, 
       {
         test: /.s?css$/,
         use: [

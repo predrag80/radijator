@@ -25,6 +25,48 @@ $breakpoints: (
   @each $size, $value in $breakpoints {
     @media (max-width: $value) {
       width: 100%;
+      padding: 0 15px;
     }
+  }
+}
+
+
+@mixin respond($breakpoint) {
+
+  @if $breakpoint ==largeScreen {
+      @media (max-width: 1440px) {
+          @content;
+      }
+  }
+
+
+  @if $breakpoint ==MidScreen {
+      @media (max-width: 1199px) {
+          @content;
+      }
+  }
+
+  @if $breakpoint ==IpadMini {
+      @media (max-width: 1024px) {
+          @content;
+      }
+  }
+
+  @if $breakpoint ==large {
+      @media (max-width: 992px) {
+          @content;
+      }
+  }
+
+  @if $breakpoint ==medium {
+      @media (max-width: 768px) {
+          @content;
+      }
+  }
+
+  @if $breakpoint ==small {
+      @media (max-width: 576px) {
+          @content; 
+      }
   }
 }

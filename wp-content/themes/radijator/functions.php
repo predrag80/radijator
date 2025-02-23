@@ -7,14 +7,30 @@ require_once 'includes/load_assets.php';
 include_once 'includes/post-types.php';
 include_once 'includes/nav_walker.php';
 
+add_theme_support('post-thumbnails');
+add_theme_support('editor-styles');
+add_editor_style( 'editor-style.css' );
+
+
 /**
  * Load Font Awesome css.
  */
-function r_99bitcoins_enqueue_styles() {
+function r_enqueue_styles() {
 	wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css', array(), '6.6.0' );
+	wp_enqueue_style( 'swiper-slider-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
+
+	
 }
 
-add_action( 'wp_enqueue_scripts', 'r_99bitcoins_enqueue_styles', 15 );
+add_action( 'wp_enqueue_scripts', 'r_enqueue_styles', 15 );
+
+
+function r_external_sources() {
+	wp_enqueue_script( 'swiper-slider-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), '', true );
+}
+
+add_action( 'wp_enqueue_scripts', 'r_external_sources', 16 );
+
 
 add_filter( 'show_admin_bar', '__return_false' );
 
@@ -35,3 +51,21 @@ if ( ! function_exists( 'radijator_setup' ) ) {
 	}
 }
 add_action( 'after_setup_theme', 'radijator_setup' );
+
+
+
+function r_register_acf_blocks() {
+    /**
+     * We register our block's with WordPress's handy
+     * register_block_type();
+     *
+     * @link https://developer.wordpress.org/reference/functions/register_block_type/
+     */
+    register_block_type( __DIR__ . '/template-parts/blocks/products' );
+	register_block_type( __DIR__ . '/template-parts/blocks/services' );
+	register_block_type( __DIR__ . '/template-parts/blocks/about' );
+	register_block_type( __DIR__ . '/template-parts/blocks/search' );
+	register_block_type( __DIR__ . '/template-parts/blocks/process' );
+}
+// Here we call our tt3child_register_acf_block() function on init.
+add_action( 'init', 'r_register_acf_blocks' );
