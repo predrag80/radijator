@@ -22,7 +22,7 @@ h2 {
   color: $main_heading;
   font-size: 32px;
   font-weight: $font-weight-normal;
-  @include respond('large') {
+  @include respond(large) {
     font-size: 28px;
   }
 
@@ -377,7 +377,7 @@ body {
   grid-gap: 20px;
   align-items: flex-start;
   margin-top: 120px;
-  @include respond('large') {
+  @include respond(large) {
     margin-top: 50px;
   }
   @include respond('medium') {
@@ -394,7 +394,7 @@ body {
     font-size: 18px;
     line-height: 1.3;
 
-    @include respond('large') {
+    @include respond(large) {
       font-size: 16px;
     }
 
@@ -482,7 +482,7 @@ body {
     font-size: 30px;
     margin: 0 0 35px 0;
     font-weight: $font-weight-light;
-    @include respond('large') {
+    @include respond(large) {
       font-size: 26px;
     }
 }
@@ -490,7 +490,7 @@ body {
 .products-type__item  p {
     font-size: 18px;
     line-height: 1.3;
-    @include respond('large') {
+    @include respond(large) {
       font-size: 16px;
     }
 }
@@ -541,7 +541,7 @@ body {
       display: $flex-block;
       align-items: flex-end;
       flex-direction: column;
-      @include respond('large') {
+      @include respond(large) {
         align-items: center;
         margin-top: 30px;
       }
@@ -644,7 +644,7 @@ body {
 
 .about {
 
-  @include respond('large') {
+  @include respond(large) {
     text-align: center;
   }
 
@@ -655,7 +655,7 @@ body {
   p {
     margin: 0;
     padding: 0 70px;
-    @include respond('large') {
+    @include respond(large) {
       padding: 0;
     }
   }
@@ -663,7 +663,7 @@ body {
   .grid-block {
     grid-template-columns: 45% 55%;
     grid-gap: 50px;
-    @include respond('large') {
+    @include respond(large) {
       grid-template-columns: 1fr;
       grid-gap:0;
     }
@@ -675,7 +675,7 @@ body {
     grid-gap: 5px;
     margin-top: 60px;
     align-items: flex-start;
-    @include respond('large') {
+    @include respond(large) {
       grid-template-columns: 1fr;
     }
 
@@ -694,8 +694,14 @@ body {
     }
 
     &--left {
-      @include respond('large') {
+      @include respond(large) {
         margin-bottom: 30px;
+      }
+
+      img {
+         @include respond(large) {
+          margin: 0 auto;
+         }
       }
     }
 
@@ -705,12 +711,12 @@ body {
       div {
         display: flex;
         align-items: center;
-        @include respond('large') {
+        @include respond(large) {
           display: block;
         }
 
         img {
-          @include respond('large') {
+          @include respond(large) {
             margin: 0 auto;
           }
         }
@@ -726,7 +732,7 @@ body {
 
   h2 {
     margin: 15px 0 65px 15px ;
-    @include respond('large') {
+    @include respond(large) {
       margin-bottom: 30px;
     }
   }
@@ -734,7 +740,7 @@ body {
   .grid-block {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
-    @include respond('large') {
+    @include respond(large) {
       grid-template-columns: 1fr;
       gap: 15px;
     }
@@ -759,7 +765,7 @@ body {
         right: -31px;
         top: 66px;
 
-        @include respond('large') {
+        @include respond(large) {
             content:none;
         }
       }
@@ -781,7 +787,7 @@ body {
         bottom:-10px;
 
         
-        @include respond('large') {
+        @include respond(large) {
           content: none;
         }
       }
@@ -802,7 +808,7 @@ body {
         left: -30px;
 
         
-        @include respond('large') {
+        @include respond(large) {
           content: none;
         }
       }
@@ -902,7 +908,7 @@ body {
 
 .part-news {
 
-  @include respond('large') {
+  @include respond(large) {
     text-align: center;
   }
 
@@ -912,7 +918,7 @@ body {
     width: 558px;
     height: 372px;
     object-fit: cover;
-    @include respond('large') {
+    @include respond(large) {
       width: 100%;
       height: auto;
     }
@@ -924,7 +930,7 @@ body {
     font-size: 28px;
     text-align: $text-left;
     line-height: 1;
-     @include respond('large') {
+     @include respond(large) {
       text-align: center;
     }
 
@@ -945,7 +951,7 @@ body {
     gap:30px;
     align-items: flex-start;
     justify-content: flex-start;
-    @include respond('large') {
+    @include respond(large) {
       grid-template-columns:  1fr;
     }
   }
@@ -964,7 +970,7 @@ body {
   gap:20px;
   margin-bottom: 30px;
 
-  @include respond('large')  {
+  @include respond(large)  {
     grid-template-columns: 1fr;
   }
 
@@ -985,7 +991,7 @@ body {
     font-size: 28px;
     text-align: $text-left;
     line-height: 1;
-    @include respond('large')  {
+    @include respond(large)  {
       margin-top: 0;
       font-size: 24px;
       line-height: 1.2;
@@ -1051,7 +1057,7 @@ body {
   text-align: right;
   position: relative;
   top: -71px;
-  @include respond('large')  {
+  @include respond(large)  {
     position: static;
     text-align: center;
     margin: 30px 0;
@@ -1060,7 +1066,11 @@ body {
 
 .banner  {
   width: 86%;
-  @include respond('large') {
+
+  @include respond(MidScreen) {
+    width:95%;
+  }
+  @include respond(large) {
     width: 100%;
   }
 }
@@ -1069,9 +1079,10 @@ body {
   grid-template-columns: 60% 40%;
   gap: 0px;
   align-items: center;
-  @include respond('large') {
+  @include respond(large) {
     grid-template-columns: 1fr;
   }
+  
 }
 
 .banner__left {
@@ -1090,9 +1101,8 @@ body {
   background: #e1dddd;
   padding: 50px 40px;
   grid-template-columns: 1fr 1fr;
-  @include respond('large') {
+  @include respond(MidScreen) {
     grid-template-columns: 1fr;
-
   }
 
   span {
@@ -1246,6 +1256,17 @@ footer {
     grid-template-columns: 1fr 1fr 1fr  1fr;
     gap: 20px;
     align-items: flex-start;
+    @include respond(large) {
+      grid-template-columns:  1fr;
+      text-align: center;
+    }
+  }
+
+  img {
+    @include respond(large) {
+      margin: 0 auto;
+      margin-bottom: 30px;
+    }
   }
 
   p {
@@ -1257,6 +1278,15 @@ footer {
     color: #acacac;
     font-size: 17px;
     font-weight: 500;
+    @include respond(large) {
+      margin-bottom: 10px;
+    }
+  }
+
+  ul {
+    @include respond(large) {
+      padding: 0;
+    }
   }
 
   ul li {
@@ -1286,6 +1316,9 @@ footer {
     grid-template-columns: 40px 56% 1fr;
     gap: 20px;
     align-items: center;
+    @include respond(large) {
+      grid-template-columns: 1fr;
+    }
   }
 
   .fa-solid {
@@ -1336,6 +1369,9 @@ footer {
   display: $flex-block;
   gap: 10px;
   margin-bottom: 15px;
+  @include respond(large) {
+    justify-content: center;
+  }
   
   p {
     margin: 0;
@@ -1418,21 +1454,38 @@ ul.breadcrumb li a:hover {
 
 .product-content {
   padding: 80px 0 0 0;
+  @include respond(large) {
+    text-align: center;
+  }
 
   h1 {
     color: $nav_link_hover;
     margin: 15px 0;
     font-size: 55px;
     font-weight: $font-weight-normal;
+    @include respond(large) {
+      font-size: 45px;
+    }
   }
 
   .grid-block {
     display: $grid-block;
     grid-template-columns: 65% 35%; 
     gap: 40px;
+    @include respond(laptopScreen) {
+      grid-template-columns: 60% 35%;
+    }
+    @include respond(large) {
+      grid-template-columns: 1fr;
+    }
   }
 
   .btn {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    min-width: auto;
+    max-width: none;
     color: #6f6f6f;
     text-transform: none;
     font-size: 16px;
@@ -1445,23 +1498,27 @@ ul.breadcrumb li a:hover {
     }
 
     .fa-regular {
-      position: absolute;
+      /*position: absolute;*/
       color: $nav_link_hover;
-      margin-right: 10px;
+      margin-left: 15px;
       font-size:30px;
       top:15px;
       right: 15px;
     }
   }
-
-
-
   .accordion {
     max-width: 420px;
-    height: 800px;
+    min-height: 800px;
     text-align: left;
     position: relative;
-    top: -250px;
+    top: -170px;
+    z-index: 2;
+    @include respond(large) {
+      position: static;
+      height: auto;
+      margin: 0 auto;
+      margin-bottom: 40px;
+    }
 
     h2 {
       padding: 20px;
@@ -1471,6 +1528,23 @@ ul.breadcrumb li a:hover {
       border-bottom: 1px solid #fff;
       font-size: 24px;
       cursor: pointer;
+
+      @include respond(MidScreen)  {
+        font-size: 21px;
+      }
+      @include respond(large)  {
+       padding: 15px;
+      }
+    }
+
+    h3 
+    {
+      a {
+        display: block;
+        margin: 18px 0;
+        color: #000;
+        text-decoration: none;
+      }
     }
   }
   
@@ -1481,12 +1555,13 @@ ul.breadcrumb li a:hover {
   input[type="radio"] {
     appearance: none;
     position: fixed;
-    top: -100vh; left: -100vh;
+    top: -100vh;
+    left: -100vh;
   
     & ~ div {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.5s;
+      transition: max-height 0.2s;
     }
   
     &:checked ~ div {
@@ -1499,11 +1574,72 @@ ul.breadcrumb li a:hover {
       font-size: 16px;
       font-weight: $font-weight-normal;
     }
-
-   
   }
 }
 
 .pp .part-news {
   padding-top: 40px;
+}
+
+
+.part-news {
+
+  h3 {
+    @include respond(MidScreen) {
+      font-size: 25px;
+    }
+    @include respond(large)  {
+      text-align: center;
+    }
+  }
+    p {
+      @include respond(MidScreen) {
+        font-size: 16px;
+      }
+      @include respond(large)  {
+        text-align: center;
+      }
+    }
+ 
+  .grid-block {
+    grid-template-columns: 560px auto;
+    @include respond(MidScreen) {
+      grid-template-columns: 450px auto;
+    }
+    @include respond(large) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .part-news-item {
+    grid-template-columns: 200px auto;
+    @include respond(MidScreen) {
+      grid-template-columns: 175px auto;
+    }
+    @include respond(large)  {
+      grid-template-columns: 1fr;
+    }
+
+    h3 {
+      font-size: 25px;
+    }
+
+    p {
+      font-size: 17px;
+      @include respond(MidScreen) {
+        font-size: 16px;
+      }
+    }
+
+    img {
+      @media(max-width:1050px) {
+       height: 115px;
+      }
+
+      @include respond(large) {
+          margin: 0 auto;
+          height: 200px;
+      }
+    }
+  }
 }

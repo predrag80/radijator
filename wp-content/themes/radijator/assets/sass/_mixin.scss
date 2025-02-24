@@ -21,11 +21,11 @@ $breakpoints: (
 @mixin container {
   max-width: 1280px;
   margin: 0 auto;
+  padding: 0 15px;
   
   @each $size, $value in $breakpoints {
     @media (max-width: $value) {
       width: 100%;
-      padding: 0 15px;
     }
   }
 }
@@ -38,6 +38,12 @@ $breakpoints: (
           @content;
       }
   }
+
+    @if $breakpoint == laptopScreen {
+        @media (max-width: 1365px) {
+            @content;
+        }
+    }
 
 
   @if $breakpoint ==MidScreen {

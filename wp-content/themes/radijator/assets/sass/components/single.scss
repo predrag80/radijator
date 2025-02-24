@@ -12,3 +12,11 @@
     }
 }
 
+.upload-docs {
+   margin: 25px 0;
+   @include respond('large') {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+   }
+}

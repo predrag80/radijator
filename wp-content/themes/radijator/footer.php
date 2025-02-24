@@ -37,7 +37,9 @@
  
          <div class="grid-block">
              <div>
-                 <img src="<?php echo $dir_path;?>/assets/img/logo.png" alt="">
+                 <a href="<?php home_url();?>">
+                    <img src="<?php echo $dir_path;?>/assets/img/logo.png" alt="">
+                 </a>
                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
                  <div class="s-media">
                      <a href="#"></a>

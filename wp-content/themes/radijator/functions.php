@@ -53,8 +53,7 @@ if ( ! function_exists( 'radijator_setup' ) ) {
 }
 add_action( 'after_setup_theme', 'radijator_setup' );
 
-
-
+/* Breadcrumbs */
 function custom_breadcrumbs() {
     $home = 'Home';
     $blog = 'Products'; 
@@ -71,7 +70,19 @@ function custom_breadcrumbs() {
     echo '</ul>';
 }
 
-
+/* body class term name */
+function term_name_body_classes($classes) {
+    if (is_singular('product')) {
+        $terms = get_the_terms(get_the_ID(), 'product_category');
+        if (!empty($terms) && !is_wp_error($terms)) {
+            foreach ($terms as $term) {
+                $classes[] = 'article' . sanitize_title($term->term_id);
+            }
+        }
+    }
+    return $classes;
+}
+add_filter('body_class', 'term_name_body_classes');
 
 
 

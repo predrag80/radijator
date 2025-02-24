@@ -72,6 +72,25 @@ function mobileMenu() {
 
 mobileMenu(); 
 
+
+
+function checkedTermAccordian(){
+    const bodyClass = document.body.classList;
+    const accItems = document.querySelectorAll('.product-content .accordion');
+    accItems.forEach((item, index) => {
+        const inputs = item.querySelectorAll('input');
+        
+        inputs.forEach(input => {
+            if (bodyClass.contains(input.id)) { 
+                console.log(`Matched Input ID: ${input.id}`);
+                input.checked = true;
+            }
+        });
+    });
+}
+
+checkedTermAccordian();
+
   document.addEventListener("DOMContentLoaded", function () {
     var swiper = new Swiper(".mySwiper", {
         loop: true,  

@@ -44,7 +44,7 @@
             </div>
 
             <div class="main-header__inner--nav container">
-                <a href="#" class="logo">
+                <a href="<?php echo home_url();?>" class="logo">
                     <img src="<?php echo $dir_path;?>/assets/img/radijator.png" width="300" height="54" alt="Radijator logo">
                 </a>
                 <nav class="main-nav">

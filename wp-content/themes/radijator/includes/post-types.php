@@ -25,7 +25,8 @@
                 'label' => __('Product Categories'),
                 'rewrite' => array('slug' => 'proizvodni-program'),
                 'hierarchical' => true,
-                'show_in_nav_menus' => true
+                'show_in_nav_menus' => true,
+                'show_in_rest' => true
             )
         );
     }

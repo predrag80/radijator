@@ -22,12 +22,17 @@
                         <?php the_content(); ?>
                     <?php endwhile; ?>
 
-
-                    <?php $add_pdf_doc = get_field('add_pdf_doc')['url'];?>
-                    <?php if(!empty($add_pdf_doc)):?>
-                        <a href="<?php echo $add_pdf_doc;?>" class="btn" target="_blank">Tehnicko uputstvo <i class="fa-regular fa-file-pdf"></i></a>
-                    <?php endif;?>
-            
+                    <?php if( have_rows('add_pdf') ): ?>
+                        <?php while( have_rows('add_pdf') ): the_row(); 
+                            $add_pdf_docs = get_sub_field('add_pdf_docs')['url'];
+                            $add_pdf_name = get_sub_field('add_pdf_name');
+                            ?>
+                            <div class="upload-docs">
+                                <a href="<?php echo $add_pdf_docs;?>" class="btn" target="_blank"><?php echo $add_pdf_name;?> <i class="fa-regular fa-file-pdf"></i></a>
+                            </div>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
+                  
                 </div>
                 <div>
                     <div class="related-products">
@@ -43,8 +48,8 @@
                                 if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) :
                                     foreach ( $terms as $term ) : ?>
                                         <article>
-                                            <input id="article<?php echo $count;?>" type="radio" name="articles" checked>
-                                            <label for="article<?php echo $count;?>">
+                                            <input id="article<?php echo $term->term_id;?>" type="radio" name="articles" >
+                                            <label for="article<?php echo $term->term_id;?>">
                                                 <h2><?php echo esc_html( $term->name );?></h2>
                                             </label>
 
@@ -65,9 +70,9 @@
                                             <?php 
                                                 if (!empty($posts)) {
                                                     foreach ($posts as $post) {?>
-                                                    <?php  
-                                                        $upload_product_image = get_field('upload_product_image', $post->ID)['url'];
-                                                    ?>
+                                                        <?php  
+                                                            $upload_product_image = get_field('upload_product_image', $post->ID)['url'];
+                                                         ?>
                                                         <div>
                                                             <img src="<?php echo $upload_product_image;?>" alt="">    
                                                             <h3><a href="<?php echo get_permalink($post->ID);?>"><?php echo esc_html($post->post_title);?></a></h3>                          
