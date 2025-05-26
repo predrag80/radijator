@@ -1,0 +1,176 @@
+@use '../variables' as *;
+@use '../mixin' as *;
+
+
+.products_filter {
+    background: #efeded;
+    padding: 80px;
+
+    .grid-block {
+        grid-template-columns: 450px auto;
+        gap: 50px;
+        align-items: flex-start;
+
+        @include respond(MidScreen) {
+             grid-template-columns: 350px auto;
+        }
+
+         @include respond(large) {
+             grid-template-columns: 100%;
+        }
+    }
+
+    &__left {
+        h2 {
+            border-bottom: 1px solid #EC1F27;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        p {
+            color: #818080;
+            margin-bottom: 15px;
+        }
+    }
+
+    &__right {
+       position: relative;
+
+       &::before {
+        /* content: "";
+            background: url('../img/image-19.png') no-repeat right center;*/
+        }
+       .wrap-groups {
+        display: flex;
+        gap: 15px;
+        @include respond(small) {
+            flex-direction: column;
+
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            flex: 1;
+
+            &__title {
+                display: flex;
+                background: #EC1F27;
+                padding: 8px;
+                margin-bottom: 10px;
+                align-items: center;
+                gap: 15px;
+
+                p {
+                    color: #fff;
+                }
+
+                img {
+                    object-fit: contain;
+                }
+            }
+        }
+       }
+
+       input[type="checkbox"]{
+        display: none;
+       }
+
+       .custom-radio {
+            display: block;
+            position: relative;
+            padding: 5px 5px 5px 25px;
+            cursor: pointer;
+            font-size: 16px;
+            user-select: none;
+      }
+
+    /* Outer circle */
+    .custom-radio::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        top: 12px;
+        width: 3px;
+        height: 3px;
+        border: 2px solid #ec1f27;
+        background-color: #ec1f27;
+    }
+
+    /* Inner dot (checked state) */
+    input[type="checkbox"]:checked + .custom-radio::after {
+        content: "";
+            background-color: transparent;
+            content: "";
+            height: 6px;
+            left: 5px;
+            position: absolute;
+            top: 8px;
+            width: 6px;
+        }
+
+         input[type="checkbox"].selected + .custom-radio::after {
+            content: "";
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height:100%;
+            background-color: #818080;
+        }
+
+        input[type="checkbox"].selected + .custom-radio {
+            color: #fff;
+        }
+
+         input[type="checkbox"].selected + .custom-radio::before {
+            border: 2px solid #fff;
+            background-color: #fff;
+            z-index: 101;
+         }
+
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #818080;
+            background: #fff;
+            border-bottom: 1px solid #CDCDCD;
+
+            &:hover {
+               border-bottom: 1px solid #ec1f27;
+            }
+        
+            &.selected {
+                > .custom-radio{
+                    color: #fff;
+                    background: #818080;
+
+                    &::before {
+                        border: 2px solid #fff;
+                        background-color: #fff;
+                    }
+                }
+            }
+            
+           
+        }
+
+        &--btn {
+             text-align: right;
+           .btn {
+                width: 90px;
+                background: #ec1f27;
+                color: #fff;
+                padding: 10px;
+                text-transform: none;
+                line-height: 1;
+                cursor: pointer;
+           }
+        }
+
+    } 
+}

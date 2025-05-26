@@ -104,5 +104,73 @@ function r_register_acf_blocks() {
 add_action( 'init', 'r_register_acf_blocks' );
 
 
+/* Products */
+function r_register_products_post_type() {
+    // Register custom post type
+    $labels = array(
+        'name'               => _x( 'Products', 'post type general name', 'radijator' ),
+        'singular_name'      => _x( 'Product', 'post type singular name', 'radijator' ),
+        'menu_name'          => _x( 'Products', 'admin menu', 'radijator' ),
+        'name_admin_bar'     => _x( 'Product', 'add new on admin bar', 'radijator' ),
+        'add_new'            => _x( 'Add New', 'product', 'radijator' ),
+        'add_new_item'       => __( 'Add New Product', 'radijator' ),
+        'new_item'           => __( 'New Product', 'radijator' ),
+        'edit_item'          => __( 'Edit Product', 'radijator' ),
+        'view_item'          => __( 'View Product', 'radijator' ),
+        'all_items'          => __( 'All Products', 'radijator' ),
+        'search_items'       => __( 'Search Products', 'radijator' ),
+        'parent_item_colon'  => __( 'Parent Products:', 'radijator' ),
+        'not_found'          => __( 'No products found.', 'radijator' ),
+        'not_found_in_trash' => __( 'No products found in Trash.', 'radijator' ),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array( 'slug' => 'proizvodni-program' ),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => 5,
+        'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields' ),
+    );
+
+    register_post_type( 'product', $args );
+
+    // Register taxonomy
+    $taxonomy_labels = array(
+        'name'              => _x( 'Types', 'taxonomy general name', 'radijator' ),
+        'singular_name'     => _x( 'Type', 'taxonomy singular name', 'radijator' ),
+        'search_items'      => __( 'Search Types', 'radijator' ),
+        'all_items'         => __( 'All Types', 'radijator' ),
+        'parent_item'       => __( 'Parent Type', 'radijator' ),
+        'parent_item_colon' => __( 'Parent Type:', 'radijator' ),
+        'edit_item'         => __( 'Edit Type', 'radijator' ),
+        'update_item'       => __( 'Update Type', 'radijator' ),
+        'add_new_item'      => __( 'Add New Type', 'radijator' ),
+        'new_item_name'     => __( 'New Type Name', 'radijator' ),
+        'menu_name'         => __( 'Proizvodni program', 'radijator' ),
+    );
+
+    $taxonomy_args = array(
+        'hierarchical'      => true,
+        'labels'            => $taxonomy_labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'proizvodni-program' ),
+    );
+
+    register_taxonomy( 'product_category', array( 'product' ), $taxonomy_args );
+}
+add_action( 'init', 'r_register_products_post_type' );
+
+
+
+
 
 

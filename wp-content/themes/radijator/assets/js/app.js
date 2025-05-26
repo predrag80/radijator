@@ -133,3 +133,31 @@ checkedTermAccordian();
       }
     });
 }); 
+
+
+function selectedInput() {
+   const labels = document.querySelectorAll('label.custom-label');
+
+  labels.forEach(label => {
+    const input = label.querySelector('input[type="checkbox"]');
+
+    function updateState() {
+      // Toggle .selected class on label
+      label.classList.toggle('selected', input.checked);
+
+      // Dynamically update the 'checked' attribute
+      if (input.checked) {
+        input.setAttribute('checked', 'checked');
+      } else {
+        input.removeAttribute('checked');
+      }
+    }
+
+    input.addEventListener('change', updateState);
+
+    // Set correct state on page load (for pre-checked boxes)
+    updateState();
+  });
+}
+
+ selectedInput();

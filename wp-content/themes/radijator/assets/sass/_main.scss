@@ -108,6 +108,10 @@ body {
   display: $flex-block;
 }
 
+main  {
+  min-height: 800px;
+}
+
 
 .container {
   @include container;
@@ -1642,4 +1646,9 @@ ul.breadcrumb li a:hover {
       }
     }
   }
+}
+
+
+.wpgmp_map_container {
+  margin-top: 50px;
 }
