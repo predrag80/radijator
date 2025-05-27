@@ -26,24 +26,10 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
              <div class="products_filter__right">
-
-                
-                <?php
-                    // Sanitize incoming GET parameters
-                    $surface_raw      = $_GET['surface'] ?? [];
-                    $fuels_raw        = $_GET['fuels'] ?? [];
-                    $object_types_raw = $_GET['object_type'] ?? [];
-
-                    $surface      = array_map('sanitize_text_field', (array) $surface_raw);
-                    $fuels        = array_map('sanitize_text_field', (array) $fuels_raw);
-                    $object_types = array_map('sanitize_text_field', (array) $object_types_raw);
-                    ?>
-
-                   <form method="GET" action="">
+                    <form id="ajax-filter-form">
+                        <input type="hidden" name="action" value="filter_products">
                         <div class="wrap-groups">
-                          
                             <div class="form-group">
-
                                 <div class="form-group__title">
                                     <img src="<?php echo $dir_path;?>/assets/img/image-17.png" alt="">
                                     <p>površina</p>
@@ -101,15 +87,13 @@
                                     <span class="custom-radio">ugalj</span>
                                 </label>
                                   <label class="custom-label">
-                                    <input type="checkbox" name="fuels[]" value="energija">
+                                    <input type="checkbox" name="fuels[]" value="električna energija">
                                     <span class="custom-radio">električna energija</span>
                                 </label>
                                   <label class="custom-label">
                                     <input type="checkbox" name="fuels[]" value="kombinovani">
                                     <span class="custom-radio">kombinovani</span>
                                 </label>
-
-                    
                             </div>
 
                               <div class="form-group">
@@ -134,70 +118,13 @@
                             </div>
                         </div>
                         <div class="products_filter__right--btn">
+                            <?php wp_nonce_field('ajax_filter_nonce', 'filter_nonce'); ?>
                             <input type="submit" value="prikaži" class="btn btn-red">
                         </div>
                     </form>
-             </div>
-        </div>
-
-        <div class="products_filter__result"></div>
-           
-
-          <?php
-            // Build WP_Query based on filters
-            $meta_query = ['relation' => 'AND'];
-
-            if (!empty($surface)) {
-            $meta_query[] = [
-                'key'     => 'povrsina',
-                'value'   => $surface,
-                'compare' => 'IN'
-            ];
-            }
-
-            if (!empty($fuels)) {
-            $meta_query[] = [
-                'key'     => 'gorivo',
-                'value'   => $fuels,
-                'compare' => 'IN'
-            ];
-            }
-
-            if (!empty($object_types)) {
-            $meta_query[] = [
-                'key'     => 'vrsta_objekta',
-                'value'   => $object_types,
-                'compare' => 'IN'
-            ];
-            }
-
-            $args = [
-            'post_type'      => 'product',
-            'posts_per_page' => -1,
-            'meta_query'     => $meta_query
-            ];
-
-            $query = new WP_Query($args);
-            ?>
-             <h2>Rezultati pretrage</h2> 
-            <?php if ($query->have_posts()) : ?>
-            <ul>
-                <?php while ($query->have_posts()) : $query->the_post(); ?>
-                <li>
-                    <strong><?php the_title(); ?></strong><br>
-                    Surface: <?php the_field('povrsina'); ?><br>
-                    Fuels: <?php the_field('gorivo'); ?><br>
-                    Object Type: <?php the_field('vrsta_objekta'); ?>
-                </li>
-                <?php endwhile; ?>
-            </ul>
-            <?php else : ?>
-                <p>No products match your filters.</p>
-                <?php endif; ?>
-        <?php wp_reset_postdata(); ?>
-
-
-
+                </div>
+            </div>
+            <div class="products_filter__result"></div> 
         </div>
     </div>
 </section>

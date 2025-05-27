@@ -1,0 +1,21 @@
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('ajax-filter-form');
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const data = new FormData(form);
+
+    fetch(ajaxFilter.ajax_url, {
+      method: 'POST',
+      body: data
+    })
+    .then(res => res.text())
+    .then(html => {
+      document.querySelector('.products_filter__result').innerHTML = html;
+      console.log('AJAX request successful, content updated.');
+    })
+    .catch(err => console.error('AJAX error:', err));
+  });
+});

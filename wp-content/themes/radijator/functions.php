@@ -170,7 +170,82 @@ function r_register_products_post_type() {
 add_action( 'init', 'r_register_products_post_type' );
 
 
+/* ajax request search filter */
+add_action('wp_ajax_filter_products', 'ajax_filter_products');
+add_action('wp_ajax_nopriv_filter_products', 'ajax_filter_products');
+
+function ajax_filter_products() {
+  // Check nonce
+  if (!isset($_POST['filter_nonce']) || !wp_verify_nonce($_POST['filter_nonce'], 'ajax_filter_nonce')) {
+    wp_die('Security check failed');
+  }
+
+  // Sanitize
+  $surface      = isset($_POST['surface']) ? array_map('sanitize_text_field', (array) $_POST['surface']) : [];
+  $fuels        = isset($_POST['fuels']) ? array_map('sanitize_text_field', (array) $_POST['fuels']) : [];
+  $object_types = isset($_POST['object_type']) ? array_map('sanitize_text_field', (array) $_POST['object_type']) : [];
+
+  // Build meta_query
+  $meta_query = ['relation' => 'AND'];
+
+  if (!empty($surface)) {
+    $meta_query[] = [
+      'key'     => 'povrsina',
+      'value'   => $surface,
+      'compare' => 'IN'
+    ];
+  }
+
+  if (!empty($fuels)) {
+    $meta_query[] = [
+      'key'     => 'gorivo',
+      'value'   => $fuels,
+      'compare' => 'IN'
+    ];
+  }
+
+  if (!empty($object_types)) {
+    $meta_query[] = [
+      'key'     => 'vrsta_objekta',
+      'value'   => $object_types,
+      'compare' => 'IN'
+    ];
+  }
+
+  // Query
+  $query = new WP_Query([
+    'post_type'      => 'product',
+    'posts_per_page' => -1,
+    'meta_query'     => $meta_query
+  ]);
+
+  // Output
+  if ($query->have_posts()) :
+    echo '<ul>';
+    while ($query->have_posts()) : $query->the_post(); ?>
+      <li>
+        <strong><?php echo esc_html(get_the_title()); ?></strong><br>
+        Surface: <?php echo esc_html(get_field('povrsina')); ?><br>
+        Fuels: <?php echo esc_html(get_field('gorivo')); ?><br>
+        Object Type: <?php echo esc_html(get_field('vrsta_objekta')); ?>
+      </li>
+    <?php endwhile;
+    echo '</ul>';
+  else :
+    echo '<p>No products match your criteria.</p>';
+  endif;
+
+  wp_reset_postdata();
+  wp_die(); // Always terminate AJAX
+}
 
 
 
+function enqueue_ajax_filter_script() {
+  // Register JS
+  wp_enqueue_script('ajax-filter', get_template_directory_uri() . '/assets/js/ajax-filter.js',['jquery'], );
+  // Pass data to JS
+  wp_localize_script('ajax-filter', 'ajaxFilter', ['ajax_url' => admin_url('admin-ajax.php'),]);
+}
+add_action('wp_enqueue_scripts', 'enqueue_ajax_filter_script');
 
