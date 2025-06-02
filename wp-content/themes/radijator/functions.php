@@ -221,13 +221,11 @@ function ajax_filter_products() {
 
   // Output
   if ($query->have_posts()) :
+    echo '<h2>Rezultat pretrage</h2>';
     echo '<ul>';
     while ($query->have_posts()) : $query->the_post(); ?>
       <li>
-        <strong><?php echo esc_html(get_the_title()); ?></strong><br>
-        Surface: <?php echo esc_html(get_field('povrsina')); ?><br>
-        Fuels: <?php echo esc_html(get_field('gorivo')); ?><br>
-        Object Type: <?php echo esc_html(get_field('vrsta_objekta')); ?>
+       <a href="<?php echo get_permalink();?>"><?php echo esc_html(get_the_title()); ?></a>
       </li>
     <?php endwhile;
     echo '</ul>';
