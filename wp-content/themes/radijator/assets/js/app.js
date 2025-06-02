@@ -47,31 +47,37 @@ function closeNav() {
 openNav();
 closeNav(); 
 
-function mobileMenu() {
-    const secNavParentItem = document.querySelectorAll('.secondary-nav .menu .menu-item-has-children');
-    secNavParentItem.forEach(item => {
+function secondaryNav() {
+  const secNavParentItems = document.querySelectorAll('.secondary-nav .menu .menu-item-has-children');
 
+    secNavParentItems.forEach(item => {
+      
         let arrow = document.createElement("i");
         arrow.classList.add("fa-solid", "fa-chevron-right", "arrow");
         item.appendChild(arrow);
 
-        item.addEventListener('click', function(e) {
-            
-            this.classList.toggle('active');
-
-            if (this.classList.contains("active")) {
-                arrow.classList.replace("fa-chevron-right", "fa-chevron-down");
-            } else {
-                arrow.classList.replace("fa-chevron-down", "fa-chevron-right");
-            }
-            e.preventDefault();
+        item.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event from bubbling to anchor
+            item.classList.toggle('active'); // Toggle open class for showing children
         });
-    }
-    );
+
+        item.addEventListener('click', (e) => {
+            const target = e.target;
+
+            // Allow clicking actual child links inside the submenu
+            if (target.tagName === 'A' && target.closest('.menu-item-has-children') === item) {
+            return; // Let it proceed
+            }
+
+          
+
+
+            // If clicked anywhere else on the parent item, toggle children
+            item.classList.toggle('active');
+        });
+    });
 }
-
-mobileMenu(); 
-
+ secondaryNav();
 
 
 function checkedTermAccordian(){
