@@ -5,7 +5,15 @@ document.addEventListener('DOMContentLoaded', function () {
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
+
+      const result =  document.querySelector('.products_filter__result');
+      result.style.display = 'block';
+
     const data = new FormData(form);
+
+    if(!data) {
+      return console.error('No data to send in AJAX request.');
+    };
 
     fetch(ajaxFilter.ajax_url, {
       method: 'POST',

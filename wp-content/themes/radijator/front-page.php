@@ -119,6 +119,7 @@
                         </div>
                         <div class="products_filter__right--btn">
                             <?php wp_nonce_field('ajax_filter_nonce', 'filter_nonce'); ?>
+                            <input type="text" value="poništi" id="ajax-filter-clear" class="btn btn-red">
                             <input type="submit" value="prikaži" class="btn btn-red">
                         </div>
                     </form>

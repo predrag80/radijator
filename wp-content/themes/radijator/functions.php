@@ -185,8 +185,17 @@ function ajax_filter_products() {
   $fuels        = isset($_POST['fuels']) ? array_map('sanitize_text_field', (array) $_POST['fuels']) : [];
   $object_types = isset($_POST['object_type']) ? array_map('sanitize_text_field', (array) $_POST['object_type']) : [];
 
+
+
+ // ✅ If no filters are selected, return message
+  if (empty($surface) && empty($fuels) && empty($object_types)) {
+    echo '<p>Molimo Vas da izabere najmanje jedno polje u filteru kako bi videli rezultate pretrage.</p>';
+    wp_die(); 
+  }
+
+
   // Build meta_query
-  $meta_query = ['relation' => 'AND'];
+  $meta_query = [];
 
   if (!empty($surface)) {
     $meta_query[] = [
@@ -216,7 +225,7 @@ function ajax_filter_products() {
   $query = new WP_Query([
     'post_type'      => 'product',
     'posts_per_page' => -1,
-    'meta_query'     => $meta_query
+     'meta_query'     => array_merge(['relation' => 'AND'], $meta_query),
   ]);
 
   // Output
@@ -230,7 +239,7 @@ function ajax_filter_products() {
     <?php endwhile;
     echo '</ul>';
   else :
-    echo '<p>No products match your criteria.</p>';
+    echo '<p>Ne postoje proizvodi na osnovu filtera koji ste izabrali</p>';
   endif;
 
   wp_reset_postdata();

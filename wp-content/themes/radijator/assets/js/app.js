@@ -161,4 +161,21 @@ function selectedInput() {
 }
 
  selectedInput();
- 
+
+function clearAllCheckedInputs() {
+   const resetBtn = document.getElementById('ajax-filter-clear');
+   const result =  document.querySelector('.products_filter__result');
+    if (!resetBtn) return;
+
+    resetBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const inputs = document.querySelectorAll('input[type="checkbox"]:checked');
+        inputs.forEach(input => {
+            input.checked = false;
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+            result.style.display = "none"; // Hide the result section
+        });
+    });
+}
+
+clearAllCheckedInputs();
