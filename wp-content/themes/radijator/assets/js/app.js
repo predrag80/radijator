@@ -69,9 +69,6 @@ function secondaryNav() {
             return; // Let it proceed
             }
 
-          
-
-
             // If clicked anywhere else on the parent item, toggle children
             item.classList.toggle('active');
         });

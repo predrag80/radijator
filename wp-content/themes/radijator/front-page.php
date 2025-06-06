@@ -125,8 +125,13 @@
                     </form>
                 </div>
             </div>
-            <div class="products_filter__result"></div> 
+           
         </div>
+    </div>
+</section>
+<section class="filter-result">
+    <div class="container">
+         <div class="products_filter__result"></div> 
     </div>
 </section>
 

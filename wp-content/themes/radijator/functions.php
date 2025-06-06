@@ -230,11 +230,23 @@ function ajax_filter_products() {
 
   // Output
   if ($query->have_posts()) :
-    echo '<h2>Rezultat pretrage</h2>';
+    echo '<h2>Rezultati pretrage:</h2>';
     echo '<ul>';
     while ($query->have_posts()) : $query->the_post(); ?>
+     <a href="<?php echo get_permalink();?>" class="products_filter__result--title"><?php echo esc_html(get_the_title()); ?></a>
       <li>
-       <a href="<?php echo get_permalink();?>"><?php echo esc_html(get_the_title()); ?></a>
+       <div class="products_filter__result--left">
+          <a href="<?php echo get_permalink();?>">
+            <img src="/wp-content/uploads/2025/06/UNI-20-i-25-2.png" alt="">
+          </a>
+       </div>
+       <div class="products_filter__result--right">
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean metus ipsum, tristique sit amet pellentesque in</p>
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean metus ipsum, tristique sit amet pellentesque in
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean metus ipsum, tristique sit amet pellentesque in
+        </p>
+        <a href="<?php echo get_permalink();?>" class="read-more">Saznaj više</a>
+       </div>
       </li>
     <?php endwhile;
     echo '</ul>';
