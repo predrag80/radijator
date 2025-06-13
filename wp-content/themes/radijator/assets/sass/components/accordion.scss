@@ -1,0 +1,14 @@
+@use '../variables' as *;
+@use '../mixin' as *;
+
+.related-products {
+
+    .accordion {
+         article {
+            img {
+                max-width: 150px;
+            };
+         }
+    }
+
+}
